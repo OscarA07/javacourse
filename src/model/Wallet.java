@@ -9,6 +9,7 @@ public class Wallet {
     //atributo son privados
     private int saldo;
     private boolean tieneLimite;
+    private int meta;
 
     //METODO CONSTRUCTOR O FUNCION
     //PARA CREAR LOS OBJETOS
@@ -16,6 +17,7 @@ public class Wallet {
         super();
         saldo  = 0;
         tieneLimite = true;
+        meta = 0;
     }
 
     //metodos son publicos
@@ -38,6 +40,9 @@ public class Wallet {
             return "No se puede superar el límite " + CAPACIDAD_MAXIMA;
         }
         saldo += value;
+        if (verificarMeta()){
+            System.out.println("Has cumplido la meta");
+        }
         return "Transacción exitosa, nuevo saldo " + saldo;
     }
 
@@ -51,7 +56,7 @@ public class Wallet {
 
     public String breakLimite(){
         if(!tieneLimite){
-            return "Tu cuenta no tien límites!";
+            return "Tu cuenta no tien limites!";
         }
         if (saldo >= 10000){
             saldo -= 10000;
@@ -59,6 +64,26 @@ public class Wallet {
             return "Has roto los limites!";
         }
         return "No tiene saldo suficiente :(";
+    }
+
+    public boolean establecerMeta(int value){
+        if(value == 0){
+            meta = value;
+            return true;
+        }
+        if (value <= saldo || (value > CAPACIDAD_MAXIMA && tieneLimite)){
+            return false;
+        }
+
+        meta = value;
+        return true;
+    }
+
+    public boolean verificarMeta(){
+        if (meta == 0  || saldo < meta){
+            return false;
+        }
+        return true;
     }
 
 
