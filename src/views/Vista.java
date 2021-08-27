@@ -3,7 +3,7 @@ package views;
 import model.Wallet;
 
 public class Vista {
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         //Objeto  Wallet1 de la clase Wallet
         Wallet wallet1 = new Wallet();
         Wallet wallet2 = new Wallet();
